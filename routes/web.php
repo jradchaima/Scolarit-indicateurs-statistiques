@@ -31,4 +31,8 @@ Route::get('/etablissement', function (){
 Auth::routes();
 Route::resource('/user', 'UserController')->middleware('admin');
 Route::get('/etablissuser', 'UserController@etabliss')->name('etablissuser')->middleware('admin');
+Route::get('/regionuser', 'UserController@region')->name('regionuser')->middleware('admin');
+Route::get('/centraluser', 'UserController@central')->name('centraluser')->middleware('admin');
+
+
 

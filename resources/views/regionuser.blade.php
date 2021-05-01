@@ -94,18 +94,18 @@ tbody {
 			<tr>
 			
 				<th>Nom du responsable</th>
-				<th>Nom du établissement</th>
+				<th>Nom du région</th>
 				<th>Email du responsable</th>
 				<th>opérations</th>
 			</tr>
 		</thead>
     <tbody>
-        @foreach ($etablissuser as $etabliss)           
+        @foreach ($regionuser as $region)           
             <tr>
               
-                <td> {{ $etabliss->name }}</td>
-                <td> {{ $etabliss->representant }}</td>
-                <td> {{ $etabliss->email }}</td>
+                <td> {{ $region->name }}</td>
+                <td> {{ $region->representant }}</td>
+                <td> {{ $region->email }}</td>
                 <td>
                                             <!-- Call to action buttons -->
                                          

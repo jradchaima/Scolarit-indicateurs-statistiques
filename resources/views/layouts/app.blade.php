@@ -227,7 +227,7 @@
         
                         <div class="d-flex justify-content-center mt-3 login_container">
                                 <button type="submit" class="btn login_btn" >
-                                    {{ __('Login') }}
+                                    {{ __('Se connecter') }}
                                 </button>
 
                             

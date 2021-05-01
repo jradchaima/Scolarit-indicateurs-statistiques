@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -88,8 +89,25 @@ class UserController extends Controller
     public function etabliss()
     {
            
-        $etablissuser = User::where('etablissement', '==', "true")
-        ->orderBy('created_at', 'desc');
+        $etablissuser = User::where('etablissement', true)->get();
+       
         return view('etablissuser', compact('etablissuser'));
+    }
+    public function region()
+    {
+           
+        $regionuser = User::where('region', true)->get();
+       
+        return view('regionuser', compact('regionuser'));
+    }
+    public function central()
+    {
+           
+        $centraluser = User::where([
+            ['etablissement',false],
+            ['admin',false],
+            ['region',false],
+        ])->get();
+        return view('centraluser', compact('centraluser'));
     }
 }
