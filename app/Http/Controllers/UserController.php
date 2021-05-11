@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +29,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+      
+            return view('etablisscreate');
+     
+
     }
 
     /**
@@ -39,7 +43,27 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate($this->validationRules());
+        $etablissuser = new User;
+
+    
+        $etablissuser->name = $request->name;
+        $etablissuser->representant = $request->representant;
+        $etablissuser->email = $request->email;
+        $etablissuser->password = Hash::make($request->password);
+        $etablissuser->admin = 0;
+        $etablissuser->region = 0;
+        $etablissuser->etablissement = 1;
+        $etablissuser->etabliss_id = 3;
+        $etablissuser->region_id =3;
+        $etablissuser->centre_id = 1;
+      
+
+        $etablissuser->save();
+
+        return redirect()->route('etablissuser', $etablissuser->id)->with('Modification', 'Utilisateur établissement est modifié');
+        //Mail::to(Auth::user()->email)->send(new NewBooking($booking));
+
     }
 
     /**
@@ -61,7 +85,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $etabliss = User::find($id);
+        return view('etablissedit', compact('etabliss'));
     }
 
     /**
@@ -72,8 +97,26 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {  $validatedData = $request->validate($this->validationRules());
+
+         $etablissuser = User::find($id);
+
+         $etablissuser->name = $request->name;
+         $etablissuser->representant = $request->representant;
+         $etablissuser->email = $request->email;
+         $etablissuser->password = Hash::make($request->password);
+         $etablissuser->admin = 0;
+         $etablissuser->region = 0;
+         $etablissuser->etabliss_id = 3;
+         $etablissuser->region_id =3;
+         $etablissuser->centre_id = 1;
+         $etablissuser->etablissement = 1;
+ 
+       
+ 
+         $etablissuser->save();
+
+        return redirect()->route('etablissuser', $etablissuser->id)->with('Modification', 'Utilisateur établissement est modifié');
     }
 
     /**
@@ -84,10 +127,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $etabliss = User::find($id);
+        $etabliss->delete();
+        return redirect()->route('etablissuser', $etabliss->id)->with('Suppression', 'Utilisateur établissement est supprimé');
+        
+   
     }
     public function etabliss()
     {
+        
            
         $etablissuser = User::where('etablissement', true)->get();
        
@@ -109,5 +157,14 @@ class UserController extends Controller
             ['region',false],
         ])->get();
         return view('centraluser', compact('centraluser'));
+    }
+    private function validationRules()
+    {
+        return [
+            'name' => 'required|string|min:1|max:20',
+            'representant' => 'required|string|min:1|max:20',
+            'email' => 'required|string|email|max:20',
+    
+        ];
     }
 }

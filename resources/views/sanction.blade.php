@@ -63,7 +63,7 @@ tbody {
     <h3>{{ Auth::user()->name}}</h3>
 </header>
 <ul>
-<li><a href="#"><i class="fas fa-qrcode"></i>Aceuil</a></li>
+<li><a href="/etablissement"><i class="fas fa-qrcode"></i>Aceuil</a></li>
 <li><a href="{{ route('user.index') }}"><i class="fas fa-address-book"></i>Les utilisateurs</a></li>
 <li><a href="#"><i class="fas fa-stream"></i> rapports mensuels</a></li>
 <li><a href="#"><i class="fas fa-chart-pie"></i>les  indicateurs</a></li>
@@ -101,46 +101,103 @@ tbody {
 </div>
 @endif
 
-<div class="container" style="margin-left:10%;">
-<button style="background-color:#1E90FF;width:100px;height:30px;border:none;border-radius:5px" type="button" data-toggle="tooltip" data-placement="top" title="Ajouter"><a href="{{ route('createetabliss') }}">Ajouter</a></button>
+<div class="container" style="margin-left:10%;margin-top:-10%">
+
 <br><br>
 	<table>
 		<thead>
 			<tr>
 			
-				<th>Nom du responsable</th>
-				<th>Nom du établissement</th>
-				<th>Email du responsable</th>
-				<th>opérations</th>
+				<th>Sanctions</th>
+				<th>Nombre sanctions</th>
+				<th>Les Causes</th>
+			
 			</tr>
 		</thead>
     <tbody>
-        @foreach ($etablissuser as $etabliss)           
+            
             <tr>
               
-                <td> {{ $etabliss->name }}</td>
-                <td> {{ $etabliss->representant }}</td>
-                <td> {{ $etabliss->email }}</td>
+                <td> Expultion temporaire</td>
                 <td>
-                                            <!-- Call to action buttons -->
-                                         
-                                                   
-                                              
-                                             
-                                                   <a href="{{ route('user.edit', $etabliss->id) }}"> <button style="background-color:#FFD700;width:70px;border:none;border-radius:5px" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button></a>
-                                     
-                                                    <button style="background-color:#DC143C;width:70px;border:none;border-radius:5px" type="button" data-toggle="tooltip" data-placement="top" title="Delete"   onclick="event.preventDefault();
-            document.querySelector('#delete-form').submit();"><i class="fa fa-trash"></i></button>
-                                         <form id="delete-form" action="{{ route('user.destroy', $etabliss->id) }}" method="POST" style="display: none;">
+                <?php
+               $k = Auth::user()->etabliss_id;
+                $m ="expulsion temporaire";
+$san = DB::table('sanctions')->where([
+    ['etabliss_id', '=', $k],
+    ['type_sanction','=' ,$m],
+    
+])->count();
 
-@csrf
 
-@method('DELETE')
+echo($san);
 
-</form>         
-                                        </td>
+?>
+</td>
+                <td> 
+                <?php 
+                $caus1 = DB::table('sanctions')->where([
+                    ['etabliss_id', '=', $k],
+                    ['type_sanction','=' ,$m],
+                    ['cause_sanction', '=', 'bavarder'],])->count();
+                    $caus2 = DB::table('sanctions')->where([
+                        ['etabliss_id', '=', $k],
+                        ['type_sanction','=' ,$m],
+                        ['cause_sanction', '=', 'pas de travail'],])->count();
+
+         if($caus1 > $caus2)
+         echo "bavarder";
+         else if ($caus1 < $caus2)
+         echo "pas de travail";
+         else  if ($caus1 == $caus2)
+         echo "bavarder et pas de travail";
+         else
+         echo "cause non connu";
+         ?>
+                </td>
+       
             </tr>
-        @endforeach
+    <tr>
+      
+    <td> Expultion definitive</td>
+    <td>
+    <?php
+  
+    $k1 = Auth::user()->etabliss_id;
+                $m1 ="expulsion definitive";
+$san1 = DB::table('sanctions')->where([
+    ['etabliss_id', '=', $k1],
+    ['type_sanction','=' ,$m1],
+    
+])->count();
+echo($san1);
+
+?>
+</td>
+<td>
+<?php 
+                $cause1 = DB::table('sanctions')->where([
+                    ['etabliss_id', '=', $k1],
+                    ['type_sanction','=' ,$m1],
+                    ['cause_sanction', '=', 'bavarder'],])->count();
+                    $cause2 = DB::table('sanctions')->where([
+                        ['etabliss_id', '=', $k1],
+                        ['type_sanction','=' ,$m1],
+                        ['cause_sanction', '=', 'pas de travail'],])->count();
+
+         if($cause1 > $cause2)
+         echo "bavarder";
+         else if ($cause1 < $cause2)
+         echo "pas de travail";
+         else  if ($cause1 == $cause2)
+         echo "bavarder et pas de travail";
+         else
+         echo "cause non connu";
+         ?>
+
+</td>
+
+    </tr>
     </tbody>
   </table>
  

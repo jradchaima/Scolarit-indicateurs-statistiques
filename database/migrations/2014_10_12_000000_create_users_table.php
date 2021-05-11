@@ -23,6 +23,12 @@ class CreateUsersTable extends Migration
             $table->boolean('admin')->default(0);
             $table->boolean('region')->default(0);
             $table->boolean('etablissement')->default(0);
+            $table->bigInteger('etabliss_id')->unsigned();
+            $table->bigInteger('region_id')->unsigned();
+            $table->bigInteger('centre_id')->unsigned();
+            $table->foreign('etabliss_id')->references('id')->on('etablissements');
+            $table->foreign('region_id')->references('id')->on('regions');
+            $table->foreign('centre_id')->references('id')->on('centres');
             $table->rememberToken();
             $table->timestamps();
         });

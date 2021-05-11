@@ -31,10 +31,10 @@
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
-<h2 style="text-align:center">Espace Region</h2>
+<h2 style="text-align:center">Les statistiques</h2>
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> Les indicateurs</b></h5>
+    <h5><b><i class="fa fa-dashboard"></i> Les statistiques</b></h5>
   </header>
 
   <div class="w3-row-padding w3-margin-bottom">
@@ -86,94 +86,3 @@
       </div>
     </div>
   </div>
-
-  <div class="w3-panel">
-    <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-third">
-        <h5>Region</h5>
-        <img src="{{ asset('img/regionimg.jfif') }}" style="width:50%" alt="">
-      </div>
-      <div class="w3-twothird">
-        <h5>Les indicateurs </h5>
-        <table class="w3-table w3-striped w3-white">
-          <tr>
-            <td></td>
-            <td>Restaurants</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td> Foyers </td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td> Activités culturels</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Abscences</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Sanctions</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Formations</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Visites Pédagogiques</td>
-            <td></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-  <hr>
- 
- 
-
-  <!-- Footer -->
-  <footer class="w3-container w3-padding-16 w3-light-grey">
-    <h4>FOOTER</h4>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-  </footer>
-
-  <!-- End page content -->
-</div>
-
-<script>
-// Get the Sidebar
-var mySidebar = document.getElementById("mySidebar");
-
-// Get the DIV with overlay effect
-var overlayBg = document.getElementById("myOverlay");
-
-// Toggle between showing and hiding the sidebar, and add overlay effect
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-    overlayBg.style.display = "none";
-  } else {
-    mySidebar.style.display = 'block';
-    overlayBg.style.display = "block";
-  }
-}
-
-// Close the sidebar with the close button
-function w3_close() {
-  mySidebar.style.display = "none";
-  overlayBg.style.display = "none";
-}
-</script>
-
-
-</section>
-
-@endsection

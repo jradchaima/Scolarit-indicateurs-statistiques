@@ -6,6 +6,9 @@
     <!-- <title>Sider Menu Bar CSS</title> -->
     <link rel="stylesheet" href="{{ asset('css/back1.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <input type="checkbox" id="check">
@@ -13,7 +16,7 @@
       <i class="fas fa-bars" id="btn"></i>
       <i class="fas fa-times" id="cancel"></i>
     </label>
-    <div class="sidebar">
+    <div class="sidebar" style="margin-top:-5%;">
 
     @yield('content')
 
