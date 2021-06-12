@@ -2,9 +2,10 @@
 @extends('layouts.sidebar')
 @section('content')
 
-<header>{{Auth::user()->representant}}
+<header>
+{{Auth::user()->representant}}
     
-    <h3>{{ Auth::user()->name}}</h3>
+  
 </header>
 <ul>
 <li><a href="#"><i class="fas fa-qrcode"></i>Aceuil</a></li>

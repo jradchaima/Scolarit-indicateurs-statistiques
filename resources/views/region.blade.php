@@ -69,10 +69,15 @@
       <div class="w3-container w3-teal w3-padding-16">
         <div class="w3-left"><i ></i></div>
         <div class="w3-center">
-          <h3>23</h3>
+          <h3><?php 
+          $k = Auth::user()->region_id;
+          $san = DB::table('violences')->where('region_id','=',$k)->count();
+       
+          echo $san;
+          ?></h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Visites Pédagogiques</h4>
+        <a href="{{ route('violenceregion') }}"><h4>Violences</h4></a>
       </div>
     </div>
     <div class="w3-quarter">

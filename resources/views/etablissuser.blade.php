@@ -119,7 +119,13 @@ tbody {
             <tr>
               
                 <td> {{ $etabliss->name }}</td>
-                <td> {{ $etabliss->representant }}</td>
+                <td> <?php  $k = $etabliss->etabliss_id;
+          $san = DB::table('etablissements')->where('id','=',$k)->get();
+		  foreach ($san as $s){
+			 $l = $s->nom;
+		  }
+       echo $l;
+          ?></td>
                 <td> {{ $etabliss->email }}</td>
                 <td>
                                             <!-- Call to action buttons -->

@@ -108,8 +108,8 @@ tbody {
 		<thead>
 			<tr>
 			
-				<th>Sanctions</th>
-				<th>Nombre sanctions</th>
+				<th> Violences</th>
+				<th>Nombre violences</th>
 				<th>Les Causes</th>
 			
 			</tr>
@@ -118,14 +118,14 @@ tbody {
             
             <tr>
               
-                <td> Expultion temporaire</td>
+                <td> Violence physique</td>
                 <td>
                 <?php
                $k = Auth::user()->etabliss_id;
-                $m ="expulsion temporaire";
-$san = DB::table('sanctions')->where([
+                $m ="violence physique";
+$san = DB::table('violences')->where([
     ['etabliss_id', '=', $k],
-    ['type_sanction','=' ,$m],
+    ['type_violence','=' ,$m],
     
 ])->count();
 
@@ -136,21 +136,19 @@ echo($san);
 </td>
                 <td> 
                 <?php 
-                $caus1 = DB::table('sanctions')->where([
+                $caus1 = DB::table('violences')->where([
                     ['etabliss_id', '=', $k],
-                    ['type_sanction','=' ,$m],
-                    ['cause_sanction', '=', 'bavarder'],])->count();
-                    $caus2 = DB::table('sanctions')->where([
+                    ['type_violence','=' ,$m],
+                    ['cause_violence', '=', 'stress'],])->count();
+                    $caus2 = DB::table('violences')->where([
                         ['etabliss_id', '=', $k],
-                        ['type_sanction','=' ,$m],
-                        ['cause_sanction', '=', 'pas de travail'],])->count();
+                        ['type_violence','=' ,$m],
+                        ['cause_violence', '=', 'intimidation'],])->count();
 
          if($caus1 > $caus2)
-         echo "bavarder";
+         echo "stress";
          else if ($caus1 < $caus2)
-         echo "pas de travail";
-         else  if ($caus1 == $caus2)
-         echo "bavarder et pas de travail";
+         echo "intimidation";
          else
          echo "cause non connu";
          ?>
@@ -159,15 +157,15 @@ echo($san);
             </tr>
     <tr>
       
-    <td> Expultion definitive</td>
+    <td> Violence verbale</td>
     <td>
     <?php
   
     $k1 = Auth::user()->etabliss_id;
-                $m1 ="expulsion definitive";
-$san1 = DB::table('sanctions')->where([
+                $m1 ="violence verbale";
+$san1 = DB::table('violences')->where([
     ['etabliss_id', '=', $k1],
-    ['type_sanction','=' ,$m1],
+    ['type_violence','=' ,$m1],
     
 ])->count();
 echo($san1);
@@ -176,21 +174,19 @@ echo($san1);
 </td>
 <td>
 <?php 
-                $cause1 = DB::table('sanctions')->where([
+                $cause1 = DB::table('violences')->where([
                     ['etabliss_id', '=', $k1],
-                    ['type_sanction','=' ,$m1],
-                    ['cause_sanction', '=', 'bavarder'],])->count();
-                    $cause2 = DB::table('sanctions')->where([
+                    ['type_violence','=' ,$m1],
+                    ['cause_violence', '=', 'stress'],])->count();
+                    $cause2 = DB::table('violences')->where([
                         ['etabliss_id', '=', $k1],
-                        ['type_sanction','=' ,$m1],
-                        ['cause_sanction', '=', 'pas de travail'],])->count();
+                        ['type_violence','=' ,$m1],
+                        ['cause_violence', '=', 'intimidation'],])->count();
 
          if($cause1 > $cause2)
-         echo "bavarder";
+         echo "stress";
          else if ($cause1 < $cause2)
-         echo "pas de travail";
-         else  if ($cause1 == $cause2)
-         echo "bavarder et pas de travail";
+         echo "intimidation";
          else
          echo "cause non connu";
          ?>

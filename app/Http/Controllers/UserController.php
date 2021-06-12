@@ -47,16 +47,14 @@ class UserController extends Controller
         $etablissuser = new User;
 
     
-        $etablissuser->name = $request->name;
-        $etablissuser->representant = $request->representant;
+        $etablissuser->name = "mourouj 1";
+        $etablissuser->representant = "non connue";
         $etablissuser->email = $request->email;
         $etablissuser->password = Hash::make($request->password);
         $etablissuser->admin = 0;
         $etablissuser->region = 0;
         $etablissuser->etablissement = 1;
-        $etablissuser->etabliss_id = 3;
-        $etablissuser->region_id =3;
-        $etablissuser->centre_id = 1;
+        $etablissuser->etabliss_id = $request->meal;
       
 
         $etablissuser->save();
@@ -101,15 +99,13 @@ class UserController extends Controller
 
          $etablissuser = User::find($id);
 
-         $etablissuser->name = $request->name;
-         $etablissuser->representant = $request->representant;
+      
          $etablissuser->email = $request->email;
          $etablissuser->password = Hash::make($request->password);
          $etablissuser->admin = 0;
          $etablissuser->region = 0;
-         $etablissuser->etabliss_id = 3;
-         $etablissuser->region_id =3;
-         $etablissuser->centre_id = 1;
+         $etablissuser->etabliss_id = $request->meal;
+  
          $etablissuser->etablissement = 1;
  
        
@@ -161,9 +157,8 @@ class UserController extends Controller
     private function validationRules()
     {
         return [
-            'name' => 'required|string|min:1|max:20',
-            'representant' => 'required|string|min:1|max:20',
-            'email' => 'required|string|email|max:20',
+           
+            'email' => 'required|string|email|max:50',
     
         ];
     }

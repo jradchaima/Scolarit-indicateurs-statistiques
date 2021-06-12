@@ -37,10 +37,23 @@ Route::get('/etablissuser', 'UserController@etabliss')->name('etablissuser')->mi
 Route::get('/regionuser', 'UserController@region')->name('regionuser')->middleware('admin');
 Route::get('/centraluser', 'UserController@central')->name('centraluser')->middleware('admin');
 Route::get('/createetabliss', 'UserController@create')->name('createetabliss')->middleware('admin');
+
 Route::get('/sanctionetabliss', 'SanctionController@etabliss')->name('sanctionetabliss')->middleware('etablissement');
 Route::get('/sanctionregion', 'SanctionController@region')->name('sanctionregion')->middleware('region');
 Route::get('/sancstat', 'SanctionController@stat')->name('sancstat')->middleware('region');
+Route::get('/sancaffich', 'SanctionController@index')->middleware('etablissement');
 
+Route::post('/save', 'ViolenceController@store');
+Route::get('/editviolence/{id}', 'ViolenceController@edit');
+Route::put('/violenceupdate/{id}', 'ViolenceController@update');
+Route::delete('/violencedelete/{id}', 'ViolenceController@delete');
+Route::get('/violenceetabliss', 'ViolenceController@etabliss')->name('violenceetabliss')->middleware('etablissement');
+Route::get('/violenceregion', 'ViolenceController@region')->name('violenceregion')->middleware('region');
+Route::get('/violstat', 'ViolenceController@stat')->name('violstat')->middleware('region');
+Route::get('/violaffich', 'ViolenceController@index')->middleware('etablissement');
 
-
+Route::post('/save', 'ViolenceController@store');
+Route::get('/editviolence/{id}', 'ViolenceController@edit');
+Route::put('/violenceupdate/{id}', 'ViolenceController@update');
+Route::delete('/violencedelete/{id}', 'ViolenceController@delete');
 

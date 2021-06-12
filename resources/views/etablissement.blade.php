@@ -70,17 +70,22 @@
       <div class="w3-container w3-teal w3-padding-16">
         <div class="w3-left"><i ></i></div>
         <div class="w3-center">
-          <h3>23</h3>
+          <h3><?php 
+          $k = Auth::user()->etabliss_id;
+          $vol = DB::table('violences')->where('etabliss_id','=',$k)->count();
+       
+          echo $vol;
+          ?></h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Visites Pédagogiques</h4>
+        <a href="{{ route('violenceetabliss') }}"><h4>Violences</h4></a>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
         <div class="w3-left"><i ></i></div>
         <div class="w3-center">
-          <h3>50</h3>
+          <h3>22</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Formation</h4>
@@ -119,12 +124,12 @@
           </tr>
           <tr>
             <td></td>
-            <td>Sanctions</td>
+            <td><a style="color:black" href="/sancaffich">Sanctions</a></td>
             <td></td>
           </tr>
           <tr>
             <td></td>
-            <td>Formations</td>
+            <td><a style="color:black" href="/violaffich">Violences</a></td>
             <td></td>
           </tr>
           <tr>
