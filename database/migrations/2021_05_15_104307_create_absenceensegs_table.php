@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFoyersTable extends Migration
+class CreateAbsenceensegsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateFoyersTable extends Migration
      */
     public function up()
     {
-        Schema::create('foyers', function (Blueprint $table) {
+        Schema::create('absenceensegs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->String('nom');
+            $table->integer('nb_abs');
+            $table->integer('nbj_abs');
+            $table->string('type_abs');
+            $table->integer('id_etabl');
+            $table->integer('id_region');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateFoyersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('foyers');
+        Schema::dropIfExists('absenceensegs');
     }
 }

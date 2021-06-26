@@ -6,11 +6,11 @@
 </header>
 <ul>
 <li><a href="/region"><i class="fas fa-qrcode"></i>Aceuil</a></li>
-<li><a href="#"><i class="fas fa-clipboard"></i>Recommondation</a></li>
-<li><a href="#"><i class="fas fa-stream"></i>Rapport mensuel</a></li>
-<li><a href="#"><i class="fas fa-chart-pie"></i>Les indicateurs</a></li>
+<li><a href="/layouts/indrecomreg"><i class="fas fa-clipboard"></i>Recommondation</a></li>
 
-<li><a href="{{ route('sancstat') }}"><i class="fas fa-sliders-h"></i>Les statistiques</a></li>
+
+<li><a href="/lesstatistiques"><i class="fas fa-chart-pie"></i>les statistiques</a></li>
+<li><a href="/lesrapports1"><i class="fas fa-stream"></i> Les rapports</a></li>
 <li>
           <a  href="{{ route('logout') }}" 
                                        onclick="event.preventDefault();

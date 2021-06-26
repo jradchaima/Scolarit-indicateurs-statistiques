@@ -49,9 +49,10 @@ $violence->cause_violence= $request->cause_violence;
 $violence->type_violence= $request->type_violence;
 $violence->etabliss_id = Auth::user()->etabliss_id;
     $violence->region_id = Auth::user()->region_id;
+    $violence->centre_id = Auth::user()->centre_id;
 
 $violence->save();
-return redirect('/violaffich')->with('status','données ajoutées  avec success');
+return redirect('/violence')->with('status','données ajoutées  avec success');
 
 
 }
@@ -68,19 +69,18 @@ public function update(Request $request,$id)
     $violence->violence_date = $request->date;
     $violence->cause_violence= $request->cause_violence;
     $violence->type_violence= $request->type_violence;
-    $violence->etabliss_id = Auth::user()->etabliss_id;
-    $violence->region_id = Auth::user()->region_id;
+
     $violence->update();
     
 
-    return redirect('/violaffich')->with('status','data update  avec success');
+    return redirect('/violence')->with('status','data update  avec success');
 
 }
 public function delete($id)
 {
     $violence= Violence::findOrFail($id);
     $violence->delete();
-    return redirect('/violaffich')->with('status','données  supprimées avec succéess');
+    return redirect('/violence')->with('status','données  supprimées avec succéess');
 
 }
 }

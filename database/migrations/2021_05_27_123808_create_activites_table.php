@@ -15,6 +15,12 @@ class CreateActivitesTable extends Migration
     {
         Schema::create('activites', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('type_activite');
+            $table->integer('nb_activite');
+            $table->integer('nb_eleve');
+            $table->integer('id_etabl');
+            $table->integer('id_region');
+            $table->integer('id_centrale');
             $table->timestamps();
         });
     }

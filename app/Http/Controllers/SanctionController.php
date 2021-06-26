@@ -44,15 +44,16 @@ public function store(Request $request)
 {
 $sanction = new Sanction;
 
-$sanction->sanction_date = $request->date;
-$sanction->nombre_jours = $request->nbr_jours;
+$sanction->date = $request->date;
+$sanction->nbr_jours = $request->nbr_jours;
 $sanction->cause_sanction= $request->cause_sanction;
 $sanction->type_sanction= $request->type_sanction;
 $sanction->etabliss_id = Auth::user()->etabliss_id;
     $sanction->region_id = Auth::user()->region_id;
+    $sanction->centre_id = Auth::user()->centre_id;
 
 $sanction->save();
-return redirect('/sancaffich')->with('status','données ajoutées  avec success');
+return redirect('/sanction')->with('status','données ajoutées  avec success');
 
 
 }
@@ -66,23 +67,22 @@ public function edit($id)
 public function update(Request $request,$id)
 {
     $sanction= Sanction::findOrFail($id);
-    $sanction->sanction_date = $request->date;
-    $sanction->nombre_jours = $request->nbr_jours;
+    $sanction->date = $request->date;
+    $sanction->nbr_jours = $request->nbr_jours;
     $sanction->cause_sanction= $request->cause_sanction;
     $sanction->type_sanction= $request->type_sanction;
-    $sanction->etabliss_id = Auth::user()->etabliss_id;
-    $sanction->region_id = Auth::user()->region_id;
+
     $sanction->update();
     
 
-    return redirect('/sancaffich')->with('status','data update  avec success');
+    return redirect('/sanction')->with('status','donnée modifié avec succée');
 
 }
 public function delete($id)
 {
     $sanction= Sanction::findOrFail($id);
     $sanction->delete();
-    return redirect('/sancaffich')->with('status','données  supprimées avec succéess');
+    return redirect('/sanction')->with('status','données  supprimées avec succéess');
 
 }
 }

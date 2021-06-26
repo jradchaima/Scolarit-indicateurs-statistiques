@@ -1,28 +1,11 @@
 
 @extends('layouts.sidebar')
 @section('content')
-<header>{{Auth::user()->representant}}
+
     
-    <h3>{{ Auth::user()->name}}</h3>
+ {{ Auth::user()->name}}
 </header>
-<ul>
-<li><a href="/region"><i class="fas fa-qrcode"></i>Aceuil</a></li>
-<li><a href="#"><i class="fas fa-clipboard"></i>Recommondation</a></li>
-<li><a href="#"><i class="fas fa-stream"></i>Rapport mensuel</a></li>
 
-<li><a href="{{ route('sancstat') }}"><i class="fas fa-chart-pie"></i>Les statistiques</a></li>
-<li>
-          <a  href="{{ route('logout') }}" 
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                     <i class="fas fa-sign-out-alt"></i>{{ __('Déconnexion') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                    </li>
-</ul>
 </div>
 <section>
 
@@ -35,11 +18,11 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Date</label>
-            <input type="text" name="date" class="form-control" value="{{ $sanction->sanction_date }}">
+            <input type="text" name="date" class="form-control" value="{{ $sanction->date }}">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Nombre de jours</label>
-            <input type="text"   name="nbr_jours" class="form-control" value="{{ $sanction->nombre_jours }}">
+            <input type="text"   name="nbr_jours" class="form-control" value="{{ $sanction->nbr_jours }}">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Type de sanction</label>

@@ -90,41 +90,37 @@ tbody {
         <legend>Nouveau utilisateur établissement</legend>
         <form action="{{ route('user.store') }}" method="post">
             @csrf
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                      <label for="Nom du responsable<">Nom du responsable</label>
+                        <input type="text" name="name" value="{{ old('name') }}" id="" class="form-control" placeholder="" >
+                      @error('name')<div class="text-danger">{{ $message }}</div> @enderror
+                    </div>
 
+                </div>
+                </div>
                 <div class="row">
                 <div class="col">
                     <div class="form-group">
            
                       <label for="pet-select">Choisir un établissement:</label>
 
-                      <select name="region" id="region" onChange="changecat(this.value);" class="form-control">
-                      <option value="" disabled selected>Select</option>
-                      <?php
-                      $san1 = DB::table('etablissements')->get();
-                      foreach($san1 as $s){
-                          $id = $s->id;
-                          $nom = $s->nom;
-                    
-
-                      ?>
-    <option value="<?php  echo $id;?>"> <?php  echo $nom;?></option>
-    
-  <?php
-   }
-   ?>
-
-
+<select name="pets" id="pet-select"  class="form-control">
+    <option value="">--S'il vous plait choisir un option--</option>
+    <option value="dog">Dog</option>
+    <option value="cat">Cat</option>
+    <option value="hamster">Hamster</option>
+    <option value="parrot">Parrot</option>
+    <option value="spider">Spider</option>
+    <option value="goldfish">Goldfish</option>
 </select>
- 
-
-
-</div>
-
+                </div>
                 <div class="row">
                 <div class="col">
                     <div class="form-group">
-                      <label for="Email">Email </label>
-                      <input type="email" name="email"  value="{{ old('email') }}" id="email" class="form-control" placeholder="" >
+                      <label for="Email">Email du responsable</label>
+                      <input type="email" name="email"  value="{{ old('email') }}" id="" class="form-control" placeholder="" >
                       @error('email')<div class="text-danger">{{ $message }}</div> @enderror
                     </div>
                 </div>
@@ -133,16 +129,15 @@ tbody {
                 <div class="col">
                     <div class="form-group">
                       <label for="Mot de passe">Mot de passe</label>
-                      <input type="password" name="password"  value="{{ old('password') }}" id="password" class="form-control" placeholder="" >
+                      <input type="password" name="password"  value="{{ old('password') }}" id="" class="form-control" placeholder="" >
                       @error('password')<div class="text-danger">{{ $message }}</div> @enderror
                     </div>
                 </div>
             </div>
             <div class="row">
-                <button type="submit"class="btn btn-outline-primary btn-block">Ajouter!</button>
+                <button type="submit" class="btn btn-outline-primary btn-block">Ajouter!</button>
             </div>
         </form>
     </fieldset>
     </section>
- 
     @endsection

@@ -5,7 +5,7 @@
  <style>
  .container {
 	position: absolute;
-	top: 30%;
+	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
@@ -63,12 +63,9 @@ tbody {
     <h3>{{ Auth::user()->name}}</h3>
 </header>
 <ul>
-<li><a href="/etablissement"><i class="fas fa-qrcode"></i>Aceuil</a></li>
-
-<li><a href="#"><i class="fas fa-stream"></i> rapports mensuels</a></li>
-<li><a href="#"><i class="fas fa-chart-pie"></i>les  indicateurs</a></li>
-
-<li><a href="#"><i class="fas fa-sliders-h"></i> Les statistiques</a></li>
+<li><a href="/etablissement"><i class="fas fa-qrcode " class="nav-link"></i>Aceuil</a></li>
+<li><a href="/layouts/recommondation"><i class="fas fa-clipboard" ></i>Recommondation</a></li>
+<li><a href="/lesrapports"><i class="fas fa-stream"></i>Les Rapports</a></li>
 <li>
           <a  href="{{ route('logout') }}" 
                                        onclick="event.preventDefault();

@@ -1,17 +1,16 @@
   
 @extends('layouts.sidebar')
 @section('content')
-<header>{{Auth::user()->representant}}
-    
-    <h3>{{ Auth::user()->name}}</h3>
+<header>
+   {{ Auth::user()->name}}
 </header>
+
 <ul>
-<li><a href="/etablissement"><i class="fas fa-qrcode"></i>Aceuil</a></li>
-<li><a href="#"><i class="fas fa-clipboard"></i>Recommondation</a></li>
-<li><a href="#"><i class="fas fa-stream"></i>Rapport mensuel</a></li>
+<li><a href="/etablissement"><i class="fas fa-qrcode " class="nav-link"></i>Aceuil</a></li>
+<li><a href="/layouts/recommondation"><i class="fas fa-clipboard" ></i>Recommondation</a></li>
+<li><a href="/lesrapports"><i class="fas fa-stream"></i>Les Rapports</a></li>
 
 
-<li><a href="#"><i class="fas fa-chart-pie"></i>Les statistiques</a></li>
 <li>
           <a  href="{{ route('logout') }}" 
                                        onclick="event.preventDefault();
@@ -35,63 +34,87 @@
 <h2 style="text-align:center">Espace Etablissement</h2>
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> Les indicateurs</b></h5>
+    <h5><b><i class="fa fa-dashboard"></i> Les Rapports</b></h5>
   </header>
 
   <div class="w3-row-padding w3-margin-bottom">
+
+
+
     <div class="w3-quarter">
-      <div class="w3-container w3-red w3-padding-16">
+      <div class="w3-container w3-red w3-padding-16" style="width:80%">
         <div class="w3-left"></i></div>
         <div class="w3-center">
-          <h3>52</h3>
+        <h3><?php 
+          $k = Auth::user()->etabliss_id;
+          $san = DB::table('absenceensegs')->where('id_etabl','=',$k)->count();
+       
+          echo $san;
+          ?>
+          </h3>
         </div>
-        <div class="w3-clear"></div>
-        <h4> Abscences</h4>
+         <div class="w3-clear"></div>
+        <a href="/layouts/rapabsenceenseg"><h4>Absences Enseignants</h4></a>
       </div>
     </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-blue w3-padding-16">
+    <div class="w3-quarter" >
+      <div class="w3-container w3-blue w3-padding-16" style="width:80%">
         <div class="w3-left"></i></div>
         <div class="w3-center">
 
-          <h3><?php 
+        <h3><?php 
           $k = Auth::user()->etabliss_id;
-          $san = DB::table('sanctions')->where('etabliss_id','=',$k)->count();
+          $san = DB::table('absenceeleves')->where('id_etabl','=',$k)->count();
        
           echo $san;
           ?>
           </h3>
         </div>
         <div class="w3-clear"></div>
-        <a href="{{ route('sanctionetabliss') }}"><h4>Sanctions</h4></a>
+        <a href="/layouts/rapabsenceeleve"><h4>Absences Eleves</h4></a>
       </div>
     </div>
+
+
+
     <div class="w3-quarter">
-      <div class="w3-container w3-teal w3-padding-16">
+      <div class="w3-container w3-teal w3-padding-16"style="width:80%">
         <div class="w3-left"><i ></i></div>
         <div class="w3-center">
-          <h3><?php 
+             <h3><?php 
           $k = Auth::user()->etabliss_id;
-          $vol = DB::table('violences')->where('etabliss_id','=',$k)->count();
+          $san = DB::table('activites')->where('id_etabl','=',$k)->count();
        
-          echo $vol;
-          ?></h3>
+          echo $san;
+          ?>
+          </h3>
         </div>
         <div class="w3-clear"></div>
-        <a href="{{ route('violenceetabliss') }}"><h4>Violences</h4></a>
+        <a href="/layouts/rapactivite"> <h4>Activités culturels </h4></a>
       </div>
     </div>
+
+
+
     <div class="w3-quarter">
-      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16"style="width:80%">
         <div class="w3-left"><i ></i></div>
         <div class="w3-center">
-          <h3>22</h3>
+        <h3><?php 
+          $k = Auth::user()->etabliss_id;
+          $san = DB::table('communications')->where('id_etabl','=',$k)->count();
+       
+          echo $san;
+          ?>
+          </h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Formation</h4>
+        <a href="/layouts/rapcommunication"><h4>Communications</h4></a>
       </div>
     </div>
   </div>
+
+
 
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">
@@ -100,41 +123,52 @@
         <img src="{{ asset('img/etablissement.jpg') }}" style="width:100%" alt="">
       </div>
       <div class="w3-twothird">
-        <h5>Les indicateurs </h5>
+        <h5><b>Les indicateurs</b> </h5>
         <table class="w3-table w3-striped w3-white">
           <tr>
             <td></td>
-            <td>Restaurants</td>
+          <td><a href="/layouts/absenceeleve">Absence Eleve</a></td>
             <td></td>
           </tr>
           <tr>
             <td></td>
-            <td> Foyers </td>
+           
+          <td><a href="/layouts/absenceenseg">Absence Enseignant</a></td>
             <td></td>
           </tr>
           <tr>
             <td></td>
-            <td> Activités culturels</td>
+            <td><a href="/layouts/activite"> Activités culturels</a></td>
             <td></td>
           </tr>
           <tr>
             <td></td>
-            <td>Abscences</td>
+            <td><a href="/layouts/dossiermedical">Dossier Medical</a></td>
             <td></td>
           </tr>
           <tr>
             <td></td>
-            <td><a style="color:black" href="/sancaffich">Sanctions</a></td>
+            <td> <a href="/layouts/communication"> Communication</a></td>
             <td></td>
           </tr>
           <tr>
             <td></td>
-            <td><a style="color:black" href="/violaffich">Violences</a></td>
+            <td><a href="/sanction"> Sanctions </a></td></td>
             <td></td>
           </tr>
           <tr>
             <td></td>
-            <td>Visites Pédagogiques</td>
+            <td><a href="/violence">Violences </a></td></td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="/layouts/communication">Visites pédagogiques </a></td></td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="/layouts/communication">Formations </a></td></td></td>
             <td></td>
           </tr>
         </table>
@@ -145,11 +179,6 @@
  
  
 
-  <!-- Footer -->
-  <footer class="w3-container w3-padding-16 w3-light-grey">
-    <h4>FOOTER</h4>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-  </footer>
 
   <!-- End page content -->
 </div>

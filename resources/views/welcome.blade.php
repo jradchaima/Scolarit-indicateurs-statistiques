@@ -3,17 +3,13 @@
 @section('content')
 
 <header>
-{{Auth::user()->representant}}
     
-  
+   {{ Auth::user()->name}}
 </header>
 <ul>
-<li><a href="#"><i class="fas fa-qrcode"></i>Aceuil</a></li>
+<li><a href="/welcome"><i class="fas fa-qrcode"></i>Aceuil</a></li>
 <li><a href="{{ route('user.index') }}"><i class="fas fa-address-book"></i>Les utilisateurs</a></li>
-<li><a href="#"><i class="fas fa-stream"></i> les rapports mensuels</a></li>
-<li><a href="#"><i class="fas fa-chart-pie"></i>les  indicateurs</a></li>
 
-<li><a href="#"><i class="fas fa-sliders-h"></i> Les statistiques</a></li>
 <li>
           <a  href="{{ route('logout') }}" 
                                        onclick="event.preventDefault();
@@ -36,18 +32,20 @@
 <h2 style="text-align:center">Espace Administrateur</h2>
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> Les indicateurs</b></h5>
+    <h5><b><i class="fa fa-dashboard"></i> Les utilisateurs</b></h5>
   </header>
-
+<div id="container" style="margin-left:10%;">
   <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-quarter">
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"></i></div>
         <div class="w3-center">
-          <h3>52</h3>
+          <h3><?php  $et = DB::table('users')->where('etablissement','=',true)->count();
+       
+       echo $et;?></h3>
         </div>
         <div class="w3-clear"></div>
-        <h4> Abscences</h4>
+        <h4> Etablissements</h4>
       </div>
     </div>
     <div class="w3-quarter">
@@ -56,89 +54,42 @@
         <div class="w3-center">
 
           <h3>
-          5
+          <?php
+        
+   $reg = DB::table('users')->where('region','=',true)->count();
+       
+        echo $reg;?>
+     
           </h3>
         </div>
         <div class="w3-clear"></div>
-        <a href="{{ route('sanctionetabliss') }}"><h4>Sanctions</h4></a>
+       <h4>Direction régionales</h4></a>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-teal w3-padding-16">
         <div class="w3-left"><i ></i></div>
         <div class="w3-center">
-          <h3>23</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Visites Pédagogiques</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-orange w3-text-white w3-padding-16">
-        <div class="w3-left"><i ></i></div>
-        <div class="w3-center">
-          <h3>50</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Formation</h4>
-      </div>
-    </div>
-  </div>
 
+          <h3>  <?php $cent = DB::table('users')->where([
+        ['etablissement',false],
+        ['admin',false],
+        ['region',false], ])->count();
+       
+       echo $cent;   ?></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Direction centrales</h4>
+      </div>
+    </div>
+</div>
+</div>
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">
       <div class="w3-third">
         <h5>Admin</h5>
         <img src="{{ asset('img/adminimg.jpg') }}" style="width:50%;" alt="">
       </div>
-      <div class="w3-twothird">
-        <h5>Les indicateurs </h5>
-        <table class="w3-table w3-striped w3-white">
-          <tr>
-            <td></td>
-            <td>Restaurants</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td> Foyers </td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td> Activités culturels</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Abscences</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Sanctions</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Formations</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Visites Pédagogiques</td>
-            <td></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-  <hr>
- 
- 
-
-  <!-- End page content -->
-</div>
 
 <script>
 // Get the Sidebar

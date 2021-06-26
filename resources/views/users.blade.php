@@ -1,22 +1,19 @@
-  
-@extends('layouts.sidebar1')
-
-
-  
+@extends('layouts.sidebar')
 
 @section('content')
 
-<header>{{Auth::user()->representant}}
-    
-    <h3>{{ Auth::user()->name}}</h3>
+<header>
+<style>
+body{
+  background-color:#f1f1f1!important;
+}
+</style>
+   {{ Auth::user()->name}}
 </header>
 <ul>
-<li><a href="#"><i class="fas fa-qrcode"></i>Aceuil</a></li>
+<li><a href="/welcome"><i class="fas fa-qrcode"></i>Aceuil</a></li>
 <li><a href="{{ route('user.index') }}"><i class="fas fa-address-book"></i>Les utilisateurs</a></li>
-<li><a href="#"><i class="fas fa-stream"></i> rapports mensuels</a></li>
-<li><a href="#"><i class="fas fa-chart-pie"></i>les  indicateurs</a></li>
 
-<li><a href="#"><i class="fas fa-sliders-h"></i> Les statistiques</a></li>
 <li>
           <a  href="{{ route('logout') }}" 
                                        onclick="event.preventDefault();
@@ -41,17 +38,17 @@
 <br>
 
   <div class="w3-panel w3-blue">
-    <h3>Etablissement</h3>
+    <h3>Etablissements</h3>
     <p ><a href="{{ route('etablissuser') }}">Voir les utilisateurs responsables de chaque établissement</a></p>
   </div>
   <br><br>
   <div class="w3-panel w3-blue">
-    <h3>Region</h3>
+    <h3>Direction Régionales</h3>
     <p>  <a href="{{ route('regionuser') }}"> Voir les utilisateurs responsables de chaque region</a> </p>
   </div><br><br>
   <div class="w3-panel w3-blue">
-    <h3>Centre</h3>
-    <p>  <a href="{{ route('centraluser') }}"> Voir les utilisateurs responsables de chaque centre</a></p>
+    <h3>Direction Centrales</h3>
+    <p>  <a href="{{ route('centrauser') }}"> Voir les utilisateurs responsables de chaque centre</a></p>
   </div>
 </div>
 </section>

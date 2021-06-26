@@ -20,7 +20,7 @@
       <i class="fas fa-bars" id="btn"></i>
       <i class="fas fa-times" id="cancel"></i>
     </label>
-    <div class="sidebar">
+    <div class="sidebar" style="position:absolute;top:1px;">
 
     @yield('content')
 

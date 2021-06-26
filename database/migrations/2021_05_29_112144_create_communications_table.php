@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDossiersMédicalesTable extends Migration
+class CreateCommunicationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreateDossiersMédicalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('dossiers_médicales', function (Blueprint $table) {
+        Schema::create('communications', function (Blueprint $table) {
             $table->bigIncrements('id');
-           
+            $table->string('type_comun');
+            $table->integer('nb_comun');
+            $table->string('responsable');
+            $table->integer('id_etabl');
+            $table->integer('id_region');
+            $table->integer('id_centrale');
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ class CreateDossiersMédicalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dossiers_médicales');
+        Schema::dropIfExists('communications');
     }
 }

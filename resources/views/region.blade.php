@@ -7,10 +7,12 @@
 </header>
 <ul>
 <li><a href="/region"><i class="fas fa-qrcode"></i>Aceuil</a></li>
-<li><a href="#"><i class="fas fa-clipboard"></i>Recommondation</a></li>
-<li><a href="#"><i class="fas fa-stream"></i>Rapport mensuel</a></li>
+<li><a href="/layouts/indrecomreg"><i class="fas fa-clipboard"></i>Recommondation</a></li>
 
-<li><a href="{{ route('sancstat') }}"><i class="fas fa-chart-pie"></i>Les statistiques</a></li>
+
+<li><a href="/lesstatistiques"><i class="fas fa-chart-pie"></i>les statistiques</a></li>
+<li><a href="/lesrapports1"><i class="fas fa-stream"></i> Les rapports</a></li>
+
 <li>
           <a  href="{{ route('logout') }}" 
                                        onclick="event.preventDefault();
@@ -34,60 +36,80 @@
 <h2 style="text-align:center">Espace Region</h2>
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> Les indicateurs</b></h5>
+    <h5><b><i class="fa fa-dashboard"></i> Les Rapports</b></h5>
   </header>
 
   <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
-      <div class="w3-container w3-red w3-padding-16">
+
+  <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16" style="width:80%">
         <div class="w3-left"></i></div>
         <div class="w3-center">
-          <h3>52</h3>
+        <h3><?php 
+          $k = Auth::user()->region_id;
+          $san = DB::table('absenceensegs')->where('id_region','=',$k)->count();
+       
+          echo $san;
+          ?>
+          </h3>
         </div>
-        <div class="w3-clear"></div>
-        <h4> Abscences</h4>
+         <div class="w3-clear"></div>
+        <a href="/layouts/rapregabsenceenseg"><h4>Absences Enseignants</h4></a>
       </div>
     </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-blue w3-padding-16">
+    <div class="w3-quarter" >
+      <div class="w3-container w3-blue w3-padding-16" style="width:80%">
         <div class="w3-left"></i></div>
         <div class="w3-center">
 
-          <h3><?php 
+        <h3><?php 
           $k = Auth::user()->region_id;
-          $san = DB::table('sanctions')->where('region_id','=',$k)->count();
+          $san = DB::table('absenceeleves')->where('id_region','=',$k)->count();
        
           echo $san;
           ?>
           </h3>
         </div>
         <div class="w3-clear"></div>
-        <a href="{{ route('sanctionregion') }}"><h4>Sanctions</h4></a>
+        <a href="/layouts/rapregabsenceeleve"><h4>Absences Eleves</h4></a>
       </div>
     </div>
+
+
+
     <div class="w3-quarter">
-      <div class="w3-container w3-teal w3-padding-16">
+      <div class="w3-container w3-teal w3-padding-16"style="width:80%">
         <div class="w3-left"><i ></i></div>
         <div class="w3-center">
-          <h3><?php 
+             <h3><?php 
           $k = Auth::user()->region_id;
-          $san = DB::table('violences')->where('region_id','=',$k)->count();
+          $san = DB::table('activites')->where('id_region','=',$k)->count();
        
           echo $san;
-          ?></h3>
+          ?>
+          </h3>
         </div>
         <div class="w3-clear"></div>
-        <a href="{{ route('violenceregion') }}"><h4>Violences</h4></a>
+        <a href="/layouts/rapregactivite"> <h4>Activités culturels </h4></a>
       </div>
     </div>
+
+
+
     <div class="w3-quarter">
-      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16"style="width:80%">
         <div class="w3-left"><i ></i></div>
         <div class="w3-center">
-          <h3>50</h3>
+        <h3><?php 
+          $k = Auth::user()->region_id;
+          $san = DB::table('communications')->where('id_region','=',$k)->count();
+       
+          echo $san;
+          ?>
+          </h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Formation</h4>
+        <a href="/layouts/rapregcommunication"><h4>Communications</h4></a>
       </div>
     </div>
   </div>
@@ -103,38 +125,35 @@
         <table class="w3-table w3-striped w3-white">
           <tr>
             <td></td>
-            <td>Restaurants</td>
+            <td><a href="/layouts/indabselreg">Absence Eleve</a></td>
             <td></td>
           </tr>
           <tr>
             <td></td>
-            <td> Foyers </td>
+            <td><a href="/layouts/indabsensegreg"> Absence Enseignant</a> </td>
             <td></td>
           </tr>
           <tr>
             <td></td>
-            <td> Activités culturels</td>
+            <td> <a href="/layouts/indactreg">Activités culturels</a></td>
             <td></td>
           </tr>
           <tr>
             <td></td>
-            <td>Abscences</td>
+            <td><a href="/layouts/inddossierreg">Dossier Medical</a></td>
             <td></td>
           </tr>
           <tr>
             <td></td>
-            <td>Sanctions</td>
+            <td><a href="/layouts/indcomunreg">Communication</a></td>
             <td></td>
           </tr>
           <tr>
-            <td></td>
-            <td>Formations</td>
-            <td></td>
+            
           </tr>
           <tr>
             <td></td>
-            <td>Visites Pédagogiques</td>
-            <td></td>
+            
           </tr>
         </table>
       </div>

@@ -64,11 +64,11 @@ tbody {
 </header>
 <ul>
 <li><a href="/region"><i class="fas fa-qrcode"></i>Aceuil</a></li>
-<li><a href="{{ route('user.index') }}"><i class="fas fa-address-book"></i>Les utilisateurs</a></li>
-<li><a href="#"><i class="fas fa-stream"></i> rapports mensuels</a></li>
-<li><a href="#"><i class="fas fa-chart-pie"></i>les  indicateurs</a></li>
+<li><a href="/layouts/indrecomreg"><i class="fas fa-clipboard"></i>Recommondation</a></li>
 
-<li><a href="#"><i class="fas fa-sliders-h"></i> Les statistiques</a></li>
+
+<li><a href="/lesstatistiques"><i class="fas fa-chart-pie"></i>les statistiques</a></li>
+<li><a href="/lesrapports1"><i class="fas fa-stream"></i> Les rapports</a></li>
 <li>
           <a  href="{{ route('logout') }}" 
                                        onclick="event.preventDefault();

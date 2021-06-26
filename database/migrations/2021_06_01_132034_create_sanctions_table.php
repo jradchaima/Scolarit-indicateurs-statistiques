@@ -15,12 +15,6 @@ class CreateSanctionsTable extends Migration
     {
         Schema::create('sanctions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('sanction_date');
-            $table->Integer('nombre_jours');
-            $table->String('cause_sanction');
-            $table->String('type_sanction');
-            $table->bigInteger('eleve_id')->unsigned();
-            $table->foreign('eleve_id')->references('id')->on('eleves');
             $table->timestamps();
         });
     }
